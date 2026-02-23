@@ -1,0 +1,9 @@
+# assigns the Uninstall String to a variable, after matching an application name
+
+$app = Get-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*" ,
+                         "HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*" |
+         Where-Object { $_.DisplayName -like "7-Zip" }
+
+#pulls the uninstall string and runs the associated exe
+
+Start-Process -FilePath $app.UninstallString

@@ -1,0 +1,9 @@
+# Ensure PowerShellGet / PackageManagement can use NuGet
+Import-PackageProvider -Name NuGet -Force
+Import-Module PackageManagement -Force
+
+# Find installed package via Package Manager
+Get-Package -Name <displayname>
+
+# Uninstall command (uncomment to run)
+#Uninstall-Package -Name <displayname>

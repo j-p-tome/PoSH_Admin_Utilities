@@ -1,0 +1,20 @@
+# Define the list of device display names you want to update
+$deviceIds = @(
+    "<device ID>"
+)
+
+# Loop through each device ID and update extensionAttribute1
+foreach ($id in $deviceIds) {
+    $device = Get-MgDevice -Filter "deviceId eq '$id'"
+    if ($device) {
+        Update-MgDevice -DeviceId $device.Id -AdditionalProperties @{
+            "extensionAttributes" = @{
+                "extensionAttribute1" = $null #overwriting with $null vs "" (blank string) shows better control over the intentions of this script.
+            }
+        }
+        Write-Host "Updated $id with extensionAttribute1 = $null
+    }
+    else {
+        Write-Warning "Device $id not found in Entra ID"
+    }
+}

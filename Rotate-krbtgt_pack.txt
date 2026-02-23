@@ -1,0 +1,8 @@
+# Register event log source
+Register-KrbtgtEventLog
+
+# Check minimum age before rotation
+Get-KrbtgtPasswordMinimumAge
+
+# Rotate password with default settings
+Invoke-KrbtgtPasswordRotate -Force
